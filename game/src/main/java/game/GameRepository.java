@@ -18,7 +18,17 @@ public class GameRepository implements MemoryRepository{
     private static List<GameInfo> store = new ArrayList<>();
     @Override
     public void save(GameInfo gameInfo) {
-        store.add(gameInfo);
+        store.add(validNameLength(gameInfo));
+    }
+
+    private GameInfo validNameLength(GameInfo gameInfo) {
+        List<String> playerNames = gameInfo.getPlayerNames();
+        for (String playerName : playerNames) {
+            if (playerName.length() > 5){
+                throw new IllegalStateException("이름의 최대 글자수는 5글자입니다!");
+            }
+        }
+        return gameInfo;
     }
 
     @Override
