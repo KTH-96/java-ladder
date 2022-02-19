@@ -47,4 +47,7 @@ public class GameRepository implements MemoryRepository{
     }
 
 
+    public List<String> findResult() {
+        return store.get(0).getResults();
+    }
 }
